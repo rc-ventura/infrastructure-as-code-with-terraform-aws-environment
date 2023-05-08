@@ -49,31 +49,37 @@ resource "aws_route_table_association" "main_public_association" {
 }
 
 resource "aws_security_group" "main_security_group" {
-  name        = "dev_sg"
+  name        = "dynamic-dev_sg"
   description = "Allow inbound and outbound traffic with limits rules"
   vpc_id      = aws_vpc.main_vpc.id
 
-  ingress {
-    description = " Allow only SSH to the VPC"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    // ipv6_cidr_blocks = [aws_vpc.main_vpc.ipv6_cidr_block]
+  dynamic "ingress" {
+    for_each = var.sg_ingress_ports
+    content {
+      description = " Allow only SSH to the VPC"
+      from_port   = ingress.value 
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
   }
 
-  egress {
-    description      = "No limit outbound traffic"
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+  dynamic "egress" {
+    for_each = var.sg_egress_ports
+   content {
+        description      = "No limit outbound traffic"
+        from_port        = egress.value
+        to_port          = egress.value
+        protocol         = "tcp"
+        cidr_blocks      = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+  }
   }
 
-  //tags = {
-  //   Name = "allow_tls"
-  // }
+  tags = {
+     Name = "dynamic-sg"
+     Environment = "dev"
+   }
 
 }
 
@@ -112,30 +118,44 @@ resource "aws_instance" "dev-node" {
 
 }
 
-resource "aws_s3_bucket_object" "object-terraform-state" {
-  bucket = "mybucket-s3-terraform-state-bucket"
-  key    = "terraform/dev/state/terraform.tfstate"
-}
 
 resource "aws_s3_bucket" "s3-terraform-state" {
-  bucket = "mybucket-s3-terraform-state-bucket"
-  
+
+  bucket = "${local.prefix_name}mybucket-s3-terraform-state-bucket"
+
   tags = {
-   
-    Name = "s3-bucket"
+
+    Name        = "s3-bucket"
     Environment = "dev"
   }
-  
-  
+
+}
+
+
+resource "aws_s3_bucket_lifecycle_configuration" "s3-terraform-objects-lifecycle" {
+
+  bucket = aws_s3_bucket.s3-terraform-state.bucket
+
+  rule {
+    id     = "delete-objects-on-bucket-deletion"
+    status = "Enabled"
+
+    filter {
+      prefix = "terraform/dev/state/"
+    }
+    expiration {
+      expired_object_delete_marker = true
+    }
+  }
 }
 
 resource "aws_dynamodb_table" "terraform-lock" {
-  name = "terraform-backend-s3-state-lock"
+  name         = "${local.prefix_name}terraform-backend-s3-state-lock"
   billing_mode = "PAY_PER_REQUEST"
-  hash_key = "LockID"
+  hash_key     = "LockID"
 
   attribute {
-    
+
     name = "LockID"
     type = "S"
 
@@ -143,15 +163,13 @@ resource "aws_dynamodb_table" "terraform-lock" {
   }
 
   tags = {
-     Name = "dynamodb"
-     Environment = "dev"
+    Name        = "dynamodb"
+    Environment = "dev"
   }
-  
+
 }
 
-# Any resources can be created with command import in CLI. First you would must to create on aws GUI that resources.
-# in second moment create the same resources in terraform. After that in Cli execute the command:
-# $ terraform import aws_s3_bucket.mybucket  bucket=name  
 
-# to move any resources without to destroy.  Edit one resources without destroy it.
-#  edit the resources and execute 
+
+#count = 2
+#bucket = "mybucket-s3-terraform-state-bucket-${count.index}"
