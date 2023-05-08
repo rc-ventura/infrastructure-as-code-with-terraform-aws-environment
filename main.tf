@@ -111,3 +111,47 @@ resource "aws_instance" "dev-node" {
   }
 
 }
+
+resource "aws_s3_bucket_object" "object-terraform-state" {
+  bucket = "mybucket-s3-terraform-state-bucket"
+  key    = "terraform/dev/state/terraform.tfstate"
+}
+
+resource "aws_s3_bucket" "s3-terraform-state" {
+  bucket = "mybucket-s3-terraform-state-bucket"
+  
+  tags = {
+   
+    Name = "s3-bucket"
+    Environment = "dev"
+  }
+  
+  
+}
+
+resource "aws_dynamodb_table" "terraform-lock" {
+  name = "terraform-backend-s3-state-lock"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key = "LockID"
+
+  attribute {
+    
+    name = "LockID"
+    type = "S"
+
+
+  }
+
+  tags = {
+     Name = "dynamodb"
+     Environment = "dev"
+  }
+  
+}
+
+# Any resources can be created with command import in CLI. First you would must to create on aws GUI that resources.
+# in second moment create the same resources in terraform. After that in Cli execute the command:
+# $ terraform import aws_s3_bucket.mybucket  bucket=name  
+
+# to move any resources without to destroy.  Edit one resources without destroy it.
+#  edit the resources and execute 
