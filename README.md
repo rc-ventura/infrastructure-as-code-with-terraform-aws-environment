@@ -73,6 +73,46 @@ Os seguintes recursos serão provisionados com estes arquivos de configuração 
 - Key Pair
 - Instância EC2
 
+## Notas
+
+### Any resources can be created with command import in CLI. First you would must to create on aws GUI that resources.
+### in second moment create the same resources in terraform. After that in Cli execute the command:
+ 
+ ```
+ $ terraform import aws_s3_bucket.mybucket  bucket=name  
+
+```
+### to move any resources without to destroy.  Edit one resources without destroy it.
+### edit the resources and execute: 
+
+```
+ $ terraform state mv aws_s3_bucket.mybucket  aws_s3_bucket.new-mybucket 
+
+```
+
+
+### If you need to reuse some resource in a project, you can remove a resources and paste the same in another project. You can too to move any resources one directory to the other. Execute that command:
+
+```
+ $ terraform state mv -state-out=" [path de destino]" aws_s3_bucket.new-my-bucket aws_s3_bucket.mybucket 
+
+```
+* In the origin dir execute the command above.
+* Declare the destiny dir.
+* Declare the name bucket and name resource current.
+* Declare the name bucker and name resource older.
+
+
+### When I create a terraform.tfvars I set my env variables replaces the variables.tf file For example, if I uncomment the line so var.host_os = "linux" and not "windows" declared in variables.tf
+
+### Interable input variables --> When I define a variables without default this terraform ask me what is my var.host_os? Linux or windows? 
+
+## Comandos principais
+
+
+## Cursos 
+
+
 ## Contribuições
 
 Contribuições são sempre bem-vindas! Se você quiser contribuir com este projeto, por favor, envie um pull request com suas sugestões.
