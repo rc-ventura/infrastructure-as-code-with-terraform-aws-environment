@@ -73,6 +73,11 @@ Os seguintes recursos serão provisionados com estes arquivos de configuração 
 - Key Pair
 - Instância EC2
 
+## Design da arquitetura
+
+
+![terraform-aws-environment](https://github.com/rc-ventura/infrastructure-as-code-with-terraform-aws-environment/assets/87483916/decba148-bfbe-4612-a490-51328270bacc)
+
 ## Notas
 
 #### Any resources can be created with command import in CLI. First you would must to create on aws GUI that resources.
