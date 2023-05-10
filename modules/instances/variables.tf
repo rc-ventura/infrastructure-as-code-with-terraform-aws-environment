@@ -1,3 +1,34 @@
+variable "instance_name" {
+  description = "the instance name" 
+  type = string
+}
+
+variable "ami" {
+  type = string
+  description = "the AMI id"
+}
+
+variable "instance_type" {
+  type = string
+  description = "the instance type"
+}
+
+variable "env" {
+  type = string
+  description = "environment to deploy"
+}
+
+variable "subnet_id" {
+  type = string
+  description = "subnet id to network interface"
+}
+
+variable "network_prefix" {
+  type = string
+  description = "the network prefix to vpc and subnet"
+}
+
+
 variable "host_os" {
   type    = string
   default = "windows"
@@ -10,27 +41,11 @@ variable "project" {
 
 }
 
-variable "env" {
-  type    = string
-  #default = "env"
-}
 
 variable "ec2_name" {
   description = " ec2 instance name"
   type = string
 }
-
-variable "instance_type" {
-  description = "instance type"
-  type = string
-  default = "t2.micro"
-}
-
-
- variable "subnet_id" {
-   //type = string
-   //description = "subnet ID to network interface"
- }
 
 
  variable "sg_ingress_ports" {
@@ -49,6 +64,8 @@ variable "user_data_file" {
   //type = string
   //default = file("../../modules/instances/userdata.tpl")
 }
+
+
 
  variable "sg_egress_ports" {
    type = list(number)

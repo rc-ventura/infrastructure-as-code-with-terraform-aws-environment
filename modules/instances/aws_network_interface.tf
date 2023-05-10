@@ -1,10 +1,10 @@
 
 resource "aws_network_interface" "ec2-cluster-ip" {
   subnet_id   = var.subnet_id
-  private_ips = ["172.16.10.100"]
+  private_ips = ["${var.instance_name}.0.100"]
 
   tags = {
-    "Name" = "${var.env}-${var.ec2_name}"
+    "Name" = "${var.instance_name}-primary_network_interface"
     "Environment" = var.env
   }
 }

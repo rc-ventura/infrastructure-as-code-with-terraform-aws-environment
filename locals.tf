@@ -1,3 +1,3 @@
 locals {
-  prefix_name = "${var.project}-${var.env}-"
+  environment = terraform.workspace == "default" ? "dev" : terraform.workspace
 }

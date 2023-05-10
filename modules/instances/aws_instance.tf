@@ -1,6 +1,6 @@
 resource "aws_instance" "ec2_node" {
   instance_type          = var.instance_type
-  ami                    = data.aws_ami.server_ami.id
+  ami                    = var.ami
   key_name               = aws_key_pair.terraform_aws_auth.id
   vpc_security_group_ids = [var.security_group_id]
   subnet_id              = var.subnet_id
@@ -29,10 +29,16 @@ resource "aws_instance" "ec2_node" {
 
   
   tags = {
-    "Name" = "${var.env}-${var.ec2_name}"
+    "Name" = local.instance_name
     "Environment" = var.env
   }
 }
+
+resource "aws_key_pair" "terraform_aws_auth" {
+  key_name   = "terraform_aws_key"
+  public_key = file("~/.ssh/terraform_aws_key.pub")
+}
+
 
 
 

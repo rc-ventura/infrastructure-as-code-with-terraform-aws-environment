@@ -172,6 +172,11 @@ variables.tf --> variables "bucker_name" {
 - terraform validate
 - terraform state mv
 - terraform state show
+- terraform workspace list
+- terraform workspace show 
+- terraform workspace new [workspace]
+- terraform workspace select [workspace]
+-
 
 ## Flags 
 

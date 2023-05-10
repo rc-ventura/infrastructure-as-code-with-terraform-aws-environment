@@ -3,6 +3,18 @@ variable "env" {
     type = string
 }
 
+
+variable "region" {
+  type = string
+  description = "region to AZ"
+}
+
+variable "network_prefix" {
+  type = string
+  description = "the subnet network prefix"
+}
+
+
 variable "vpc_name" {
     description = "vpc name"
     type = string
