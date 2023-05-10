@@ -103,18 +103,35 @@ Os seguintes recursos serão provisionados com estes arquivos de configuração 
 * Declare the name bucker and name resource older.
 
 
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+### When I create a terraform.tfvars I set my env variables replaces the variables.tf file For example, if I uncomment the line so var.host_os = "linux" and not "windows" declared in variables.tf
+=======
+=======
+>>>>>>> main
 #### When I create a terraform.tfvars I set my env variables replaces the variables.tf file For example, if I uncomment the line so var.host_os = "linux" and not "windows" declared in variables.tf
 
 #### Interable input variables --> When I define a variables without default this terraform ask me what is my var.host_os? Linux or windows? 
 
 #### When you need create any resources in the cloud providers, you create each resources one by one. You can use "COUNT" as parameter for create many resources at once.
 
+<<<<<<< HEAD
+```
+count = 2
+bucket = "mybucket-s3-terraform-state-bucket-${count.index}"
+```
+=======
+>>>>>>> main
 
 #### Any resources can be created with command import in CLI. First you would must to create on aws GUI that resources.in second moment create the same resources in terraform. After that in Cli execute the command:
 
 ```
 # $ terraform import aws_s3_bucket.mybucket  bucket=name  
 ```
+<<<<<<< HEAD
+
+=======
+>>>>>>> main
 #### to move any resources without to destroy.  Edit one resources without destroy it. Edit the resources and execute 
 
 #### If you need to create many resources with differences char for example name of a bucket, you could use the "FOR EACH" 
@@ -138,6 +155,10 @@ variables.tf --> variables "bucker_name" {
                         type = list
 }
     ```
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> main
 
 
 ## Comandos principais
