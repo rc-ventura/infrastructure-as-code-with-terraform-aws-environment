@@ -16,7 +16,7 @@ module "instance" {
 }
 
 module "network" {
-  source         = "./modules/network"
+  source         = "./modules/networks"
   network_prefix = lookup(var.network_prefix, local.environment)
   region         = lookup(var.aws_region, local.environment)
   env            = local.environment
@@ -25,10 +25,27 @@ module "network" {
 
 }
 
-# module "storage" {
-#   source                   = "./modules/storages"
 
-# }
+
+module "storage" {
+  source          = "./modules/storages"
+  env             = local.environment
+  project         = var.project
+  is_dev_workspace = local.is_dev_workspace
+
+}
+
+
+module "backend" {
+  source = "./modules/backend"
+  bucket_id = module.storage.bucket_id
+  dynamodb_id = module.storage.dynamodb_id
+  region_id =  var.aws_region
+
+}
+
+
+
 
 
 

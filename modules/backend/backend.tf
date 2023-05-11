@@ -1,13 +1,12 @@
-
-# backend configuration
- 
 terraform {
-  backend "s3" {
-    bucket         = "infra-tf-env-mybucket-s3-terraform-state-bucket"
-    key            = "terraform/dev/state/terraform.tfstate"
-    region         = "us-east-1"
-    profile        = "terraform"
-    dynamodb_table = "infra-tf-env-terraform-backend-s3-state-lock"
+backend s3 {
+    bucket = var.bucket_id
+    region =  var.region_id
+    key =  "${terraform.workspace}/terraform.state.tf"
+    dynamodb_table = var.dynamodb_id
+    encrypt = true
+    key_prefix = "env/"
 
-  }
-}  
+}
+
+}

@@ -1,7 +1,10 @@
 resource "aws_dynamodb_table" "terraform-lock" {
-  name         = "${local.prefix_name}terraform-backend-s3-state-lock"
+  count  = var.is_dev_workspace ? 0 : 1
+
+  name         = "terraform-s3-state-lock-${local.prefix_name}"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
+
 
   attribute {
 
@@ -11,9 +14,10 @@ resource "aws_dynamodb_table" "terraform-lock" {
 
   }
 
-  tags = {
-    Name        = "dynamodb"
-    Environment = var.env
-  }
+  tags =  {
+      Name        = "dynamodb"
+      Enviroment = count.index == 0 ? terraform.workspace : null
+    } 
+    
 
 }

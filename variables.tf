@@ -74,9 +74,11 @@ variable "profile" {
     prod    = string
   })
 
+  
+
   default = {
     dev     = "terraform-dev"
-    homolog = "teraform-homolog"
+    homolog = "terraform"
     prod    = "terraform-prod"
 
   }
@@ -111,10 +113,6 @@ variable "project" {
 }
 
 
-# variable "env" {
-#   description = "proviosioned environment"
-#   type        = string
-# }
 
 variable "sg_ingress_ports" {
   type        = list(number)
