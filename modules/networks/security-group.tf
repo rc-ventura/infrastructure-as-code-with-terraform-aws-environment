@@ -27,8 +27,10 @@ resource "aws_security_group" "main_security_group" {
   }
 
   tags = {
-     Name = "dynamic-sg"
-     Environment = "dev"
-   }
+     "Name" = "${var.env}-dynamic-sg"
+     "Environment" =  var.env
+    
+  }
+   
 
 }

@@ -9,3 +9,8 @@
    type    = string
 }
 
+variable is_dev_workspace {
+
+}
+
+

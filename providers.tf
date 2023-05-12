@@ -7,7 +7,7 @@ terraform {
 }
 
 provider "aws" {
-  region                   = "us-east-1"
-  shared_credentials_files = ["~/.aws/credentials", "~/.aws/credentials-dev", "~/.aws/credentials-homolog" ]
-  profile                  = ["terraform", "terraform-dev", "terraform-homolog"]
+  region                   = lookup(var.aws_region, local.environment)
+  shared_credentials_files = ["~/.aws/credentials"]
+  profile                  = lookup(var.profile, local.profile)
 }
