@@ -36,15 +36,15 @@ variable "instance" {
   default = {
     dev = {
       ami  = "ami-052efd3df9dad4825"
-      type = "t3.micro"
+      type = "t2.micro"
     }
     homolog = {
       ami  = "ami-052efd3df9dad4825"
-      type = "t3.micro"
+      type = "t2.micro"
     }
     prod = {
       ami  = "ami-052efd3df9dad4825"
-      type = "t3.medium"
+      type = "t2.medium"
     }
   }
 }
