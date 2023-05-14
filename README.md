@@ -188,6 +188,38 @@ destroy -- force
 
 ## Cursos 
 
+FREE COURSES: 
+
+🔹 Learn Terraform and AWS - Full Course for Beginners
+
+https://lnkd.in/gyfBDCqM
+
+🔹 Terraform Foundations Course with AWS
+
+https://lnkd.in/gPazrhA7
+
+🔹 Terraform Course – Automate your AWS cloud infrastructure
+
+https://lnkd.in/gKAJrg_k
+
+🔹 Terraform Tutorial for Beginners + Hands-On Labs
+
+https://lnkd.in/g9r38YGH
+ 
+🔹 Complete Terraform Course - From Beginner to Pro 
+
+https://lnkd.in/gRXQuqJU
+
+FREE CERTIFICATION PREP:
+ 
+🔹 HashiCorp Terraform Associate Prep Certification Course
+
+https://lnkd.in/gB7Q6Yc7
+
+https://developer.hashicorp.com/terraform/tutorials#get-certified
+
+
+
 
 ## Contribuições
 

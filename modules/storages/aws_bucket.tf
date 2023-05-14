@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "s3-terraform-state" {
 resource "aws_s3_bucket_lifecycle_configuration" "s3-terraform-objects-lifecycle" {
   count  = var.is_dev_workspace ? 0 : 1
 
-  bucket = aws_s3_bucket.s3-terraform-state[count.index]
+  bucket = aws_s3_bucket.s3-terraform-state[count.index].id
 
   rule {
     id     = "delete-objects-on-bucket-deletion"
