@@ -28,15 +28,15 @@ module "network" {
 
 
 module "storage" {
-  source          = "./modules/storages"
-  env             = local.environment
-  project         = var.project
+  source           = "./modules/storages"
+  env              = local.environment
+  project          = var.project
   is_dev_workspace = local.is_dev_workspace
 
 }
 
 
-module "backend" {
+/*module "backend" {
   source = "./modules/backend"
   bucket_id = module.storage.bucket_id
   dynamodb_id = module.storage.dynamodb_id
@@ -44,6 +44,7 @@ module "backend" {
 
 }
 
+*/
 
 
 

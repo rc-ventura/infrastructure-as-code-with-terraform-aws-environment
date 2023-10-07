@@ -74,12 +74,12 @@ variable "profile" {
     prod    = string
   })
 
-  
+
 
   default = {
-    dev     = "terraform-dev"
+    dev     = "terraform"
     homolog = "terraform"
-    prod    = "terraform-prod"
+    prod    = "terraform"
 
   }
 }
@@ -87,16 +87,20 @@ variable "profile" {
 variable "ec2_name" {
   description = "ec2 instance name"
   type        = string
+  default     = "terraform-ec2"
 }
 
 variable "vpc_name" {
   description = "vpc name"
   type        = string
+  default     = "terraform-vpc"
 }
 
 variable "subnet_name" {
   description = "subnet name"
   type        = string
+  default     = "terraform-subnet"
+
 }
 
 
@@ -110,6 +114,8 @@ variable "host_os" {
 variable "project" {
   description = "value"
   type        = string
+  default     = "terraform-project"
+
 }
 
 
