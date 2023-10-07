@@ -60,10 +60,10 @@ variable  "security_group_id" {
    // description =
 }
 
-variable "user_data_file" {
-  //type = string
-  //default = file("../../modules/instances/userdata.tpl")
-}
+# variable "user_data_file" {
+#   type = string
+#    default = file("../../modules/instances/userdata.tpl")
+# }
 
 
 

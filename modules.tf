@@ -10,7 +10,7 @@ module "instance" {
   instance_type     = lookup(var.instance, local.environment)["type"]
   network_prefix    = lookup(var.network_prefix, local.environment)
   env               = local.environment
-  user_data_file    = file("./modules/instances/userdata.tpl")
+  //user_data    = file("./modules/instances/userdata.tpl")
 
 
 }

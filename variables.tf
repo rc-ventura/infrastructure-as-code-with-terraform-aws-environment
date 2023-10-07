@@ -77,9 +77,9 @@ variable "profile" {
 
 
   default = {
-    dev     = "terraform"
-    homolog = "terraform"
-    prod    = "terraform"
+    dev     = "default"
+    homolog = "default"
+    prod    = "default"
 
   }
 }
