@@ -8,9 +8,9 @@ variable "aws_region" {
   })
 
   default = {
-    dev     = "us-east-1"
-    homolog = "us-east-1"
-    prod    = "us-east-1"
+    dev     = "us-west-2"
+    homolog = "us-west-2"
+    prod    = "us-west-2"
   }
 
 }

@@ -4,10 +4,10 @@ variable "env" {
 }
 
 
-variable "region" {
-  type = string
-  description = "region to AZ"
-}
+# variable "region" {
+#   type = string
+#   description = "region to AZ"
+# }
 
 variable "network_prefix" {
   type = string
