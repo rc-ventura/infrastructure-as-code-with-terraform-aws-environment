@@ -77,9 +77,9 @@ variable "profile" {
 
 
   default = {
-    dev     = "default"
-    homolog = "default"
-    prod    = "default"
+    dev     = "dev"
+    homolog = "homolog"
+    prod    = "prod"
 
   }
 }
