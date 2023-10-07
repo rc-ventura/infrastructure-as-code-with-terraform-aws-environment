@@ -35,8 +35,8 @@ resource "aws_instance" "ec2_node" {
 }
 
 resource "aws_key_pair" "terraform_aws_auth" {
-  key_name   = "terraform_aws_key"
-  public_key = file("~/.ssh/terraform_aws_key.pub")
+  key_name   = "id_rsa"
+  public_key = file("~/.ssh/id_rsa.pub")
 }
 
 
