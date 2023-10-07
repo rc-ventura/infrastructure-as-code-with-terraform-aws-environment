@@ -58,9 +58,9 @@ variable "network_prefix" {
   })
 
   default = {
-    dev     = "10.0.0"
-    homolog = "10.0.0"
-    prod    = "10.0.0"
+    dev     = "10.0.1"
+    homolog = "10.0.2"
+    prod    = "10.0.3"
 
   }
 }
