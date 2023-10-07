@@ -22,7 +22,7 @@ resource "aws_instance" "ec2_node" {
     command = templatefile("${var.host_os}-ssh-config.tpl", {
       hostname     = self.public_ip,
       user         = "ubuntu",
-      identityfile = "~/.ssh/terraform_aws_key"
+      identityfile = "~/.ssh/id_rsa"
     })
     interpreter = var.host_os == "windows" ? ["Powershell", "-Command"] : ["bash", "-c"]
   }
