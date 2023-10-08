@@ -1,13 +1,34 @@
-# provider "aws" {
-#   region                   = lookup(var.aws_region, local.environment)
-#   shared_credentials_files = ["C://Users/.aws/credentials"]
-#   profile                  = "terraform"
-  
-#   # lookup(var.profile, local.profile)
-# }
+
+terraform {
+
+#   cloud {
+#     organization = "rc_ventura"
+
+#     workspaces {
+
+#       name = "dev"
+#     }
+#   }
+
+ required_providers {
+    aws = {
+     source  = "hashicorp/aws"
+     version = "~> 5.0.0"
+
+   }
+   }
+   required_version = ">= 1.5.0"
+ }
+
 
 provider "aws" {
-  region     = "us-west-2"
-  access_key = "AKIA5UUN325YDSME74PF"
-  secret_key = "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"
+  region                   = "us-east-1"
+  # shared_credentials_files = ["~/.aws/credentials"]
+  # profile                  = "terraform"
+  access_key = var.aws-access_key
+  secret_key = var.aws-secret_key
 }
+
+
+
+
