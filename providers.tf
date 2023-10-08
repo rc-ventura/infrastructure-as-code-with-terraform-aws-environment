@@ -23,10 +23,9 @@ terraform {
 
 provider "aws" {
   region                   = "us-east-1"
-  # shared_credentials_files = ["~/.aws/credentials"]
-  # profile                  = "terraform"
-  access_key = var.aws-access_key
-  secret_key = var.aws-secret_key
+  shared_credentials_files = ["~/.aws/credentials"]
+  profile                  = "aws_terraform"
+  
 }
 
 
